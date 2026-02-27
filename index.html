@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字断联：找回专注力的7天实验</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        :root {
+            --color-cream: #F5F2EB;
+            --color-warm-gray: #E8E4DD;
+            --color-muted-blue: #A8B8C4;
+            --color-soft-gray: #7A8289;
+            --color-dark-gray: #3D4043;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: var(--color-cream);
+            color: var(--color-dark-gray);
+        }
+
+        .font-serif {
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .noise-texture {
+            position: relative;
+        }
+
+        .noise-texture::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--color-warm-gray), transparent);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 24px;
+            }
+        }
+
+        .day-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .day-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(61, 64, 67, 0.08);
+        }
+
+        .checkbox-custom {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--color-soft-gray);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .checkbox-custom:checked {
+            background-color: var(--color-muted-blue);
+            border-color: var(--color-muted-blue);
+        }
+
+        .checkbox-custom:checked::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 3px;
+            width: 6px;
+            height: 12px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-custom:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(168, 184, 196, 0.3);
+        }
+
+        .btn-primary {
+            background-color: var(--color-dark-gray);
+            color: var(--color-cream);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-muted-blue);
+            transform: translateY(-2px);
+        }
+
+        .icon-container {
+            background-color: var(--color-warm-gray);
+            color: var(--color-dark-gray);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center noise-texture px-6 py-20">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="fade-in">
+                <div class="icon-container inline-flex items-center justify-center w-16 h-16 rounded-full mb-8">
+                    <i data-lucide="sparkles" class="w-8 h-8"></i>
+                </div>
+                <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-tight text-[#3D4043]">
+                    重获掌控感：<br>7天数字断联实验
+                </h1>
+                <p class="text-lg md:text-xl text-[#7A8289] max-w-2xl mx-auto leading-relaxed font-light">
+                    在这个信息过载的时代，让我们一起按下暂停键。用7天时间，重新找回专注力，让生活回归本真的节奏。
+                </p>
+            </div>
+            <div class="fade-in mt-12">
+                <div class="flex items-center justify-center gap-2 text-[#7A8289]">
+                    <i data-lucide="arrow-down" class="w-5 h-5 animate-bounce"></i>
+                    <span class="text-sm">向下滚动探索</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="py-24 px-6 bg-[#E8E4DD]/30">
+        <div class="max-w-4xl mx-auto">
+            <div class="fade-in">
+                <h2 class="font-serif text-3xl md:text-4xl font-semibold mb-12 text-center text-[#3D4043]">
+                    为什么我们需要断联？
+                </h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-6">
+                        <div class="icon-container inline-flex items-center justify-center w-14 h-14 rounded-full mb-4">
+                            <i data-lucide="brain" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-medium mb-3 text-[#3D4043]">注意力碎片化</h3>
+                        <p class="text-[#7A8289] leading-relaxed">
+                            平均每6分钟就会被打断一次，深度思考变得奢侈。
+                        </p>
+                    </div>
+                    <div class="text-center p-6">
+                        <div class="icon-container inline-flex items-center justify-center w-14 h-14 rounded-full mb-4">
+                            <i data-lucide="battery-low" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-medium mb-3 text-[#3D4043]">持续焦虑</h3>
+                        <p class="text-[#7A8289] leading-relaxed">
+                            通知提示音让大脑始终保持警觉，无法真正放松。
+                        </p>
+                    </div>
+                    <div class="text-center p-6">
+                        <div class="icon-container inline-flex items-center justify-center w-14 h-14 rounded-full mb-4">
+                            <i data-lucide="users" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-medium mb-3 text-[#3D4043]">真实连接减少</h3>
+                        <p class="text-[#7A8289] leading-relaxed">
+                            屏幕占据时间太多，与身边人的交流却越来越少。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The 7-Day Journey Section -->
+    <section class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="fade-in text-center mb-16">
+                <h2 class="font-serif text-3xl md:text-4xl font-semibold mb-4 text-[#3D4043]">
+                    7天断联之旅
+                </h2>
+                <p class="text-[#7A8289] max-w-2xl mx-auto">
+                    每天一个小目标，循序渐进地减少数字依赖，重建专注力。
+                </p>
+            </div>
+
+            <div class="relative">
+                <div class="timeline-line"></div>
+
+                <!-- Day 1 -->
+                <div class="fade-in relative mb-12 md:mb-16">
+                    <div class="md:w-1/2 md:pr-12 pl-12 md:pl-0">
+                        <div class="day-card bg-white p-8 rounded-2xl shadow-sm border border-[#E8E4DD]">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <span class="text-sm font-medium text-[#A8B8C4] uppercase tracking-wider">Day 01</span>
+                                    <h3 class="font-serif text-2xl font-semibold text-[#3D4043] mt-1">清理通知</h3>
+                                </div>
+                                <input type="checkbox" class="checkbox-custom" id="day1">
+                            </div>
+                            <p class="text-[#7A8289] leading-relaxed">
+                                关闭所有非必要通知。只保留电话、短信和工作中真正重要的提醒。感受一下，没有通知提示音的世界有多安静。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="fade-in relative mb-12 md:mb-16 md:flex md:justify-end">
+                    <div class="md:w-1/2 md:pl-12 pl-12">
+                        <div class="day-card bg-white p-8 rounded-2xl shadow-sm border border-[#E8E4DD]">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <span class="text-sm font-medium text-[#A8B8C4] uppercase tracking-wider">Day 02</span>
+                                    <h3 class="font-serif text-2xl font-semibold text-[#3D4043] mt-1">无手机早餐</h3>
+                                </div>
+                                <input type="checkbox" class="checkbox-custom" id="day2">
+                            </div>
+                            <p class="text-[#7A8289] leading-relaxed">
+                                享用一顿不被打扰的早餐。把手机放在另一个房间，专心品尝食物，感受清晨的阳光，享受与自己相处的时光。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="fade-in relative mb-12 md:mb-16">
+                    <div class="md:w-1/2 md:pr-12 pl-12 md:pl-0">
+                        <div class="day-card bg-white p-8 rounded-2xl shadow-sm border border-[#E8E4DD]">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <span class="text-sm font-medium text-[#A8B8C4] uppercase tracking-wider">Day 03</span>
+                                    <h3 class="font-serif text-2xl font-semibold text-[#3D4043] mt-1">30分钟专注</h3>
+                                </div>
+                                <input type="checkbox" class="checkbox-custom" id="day3">
+                            </div>
+                            <p class="text-[#7A8289] leading-relaxed">
+                                选择一件重要的事情，专注30分钟。关闭所有应用，只保留必要的工具。体验深度工作的愉悦感。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 4 -->
+                <div class="fade-in relative mb-12 md:mb-16 md:flex md:justify-end">
+                    <div class="md:w-1/2 md:pl-12 pl-12">
+                        <div class="day-card bg-white p-8 rounded-2xl shadow-sm border border-[#E8E4DD]">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <span class="text-sm font-medium text-[#A8B8C4] uppercase tracking-wider">Day 04</span>
+                                    <h3 class="font-serif text-2xl font-semibold text-[#3D4043] mt-1">晚间无屏</h3>
+                                </div>
+                                <input type="checkbox" class="checkbox-custom" id="day4">
+                            </div>
+                            <p class="text-[#7A8289] leading-relaxed">
+                                晚上8点后不再使用任何屏幕。阅读纸质书、写日记、听音乐，或者只是静静地发呆，让大脑在睡前得到真正的休息。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 5 -->
+                <div class="fade-in relative mb-12 md:mb-16">
+                    <div class="md:w-1/2 md:pr-12 pl-12 md:pl-0">
+                        <div class="day-card bg-white p-8 rounded-2xl shadow-sm border border-[#E8E4DD]">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <span class="text-sm font-medium text-[#A8B8C4] uppercase tracking-wider">Day 05</span>
+                                    <h3 class="font-serif text-2xl font-semibold text-[#3D4043] mt-1">社交媒体断舍离</h3>
+                                </div>
+                                <input type="checkbox" class="checkbox-custom" id="day5">
+                            </div>
+                            <p class="text-[#7A8289] leading-relaxed">
+                                取消关注那些让你焦虑、攀比或浪费时间的账号。只保留真正有价值的内容源。关注质量，而非数量。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 6 -->
+                <div class="fade-in relative mb-12 md:mb-16 md:flex md:justify-end">
+                    <div class="md:w-1/2 md:pl-12 pl-12">
+                        <div class="day-card bg-white p-8 rounded-2xl shadow-sm border border-[#E8E4DD]">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <span class="text-sm font-medium text-[#A8B8C4] uppercase tracking-wider">Day 06</span>
+                                    <h3 class="font-serif text-2xl font-semibold text-[#3D4043] mt-1">真实社交</h3>
+                                </div>
+                                <input type="checkbox" class="checkbox-custom" id="day6">
+                            </div>
+                            <p class="text-[#7A8289] leading-relaxed">
+                                与一位朋友或家人面对面交流。放下手机，看着对方的眼睛，真正地倾听和表达。感受真实连接的温度。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 7 -->
+                <div class="fade-in relative">
+                    <div class="md:w-1/2 md:pr-12 pl-12 md:pl-0">
+                        <div class="day-card bg-white p-8 rounded-2xl shadow-sm border border-[#E8E4DD]">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <span class="text-sm font-medium text-[#A8B8C4] uppercase tracking-wider">Day 07</span>
+                                    <h3 class="font-serif text-2xl font-semibold text-[#3D4043] mt-1">数字排毒日</h3>
+                                </div>
+                                <input type="checkbox" class="checkbox-custom" id="day7">
+                            </div>
+                            <p class="text-[#7A8289] leading-relaxed">
+                                全天远离所有电子设备。去户外散步、阅读、冥想、创作，或者只是安静地思考。感受没有数字干扰的一天。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mindset Tips Section -->
+    <section class="py-24 px-6 bg-[#E8E4DD]/30">
+        <div class="max-w-4xl mx-auto">
+            <div class="fade-in text-center mb-16">
+                <h2 class="font-serif text-3xl md:text-4xl font-semibold mb-4 text-[#3D4043]">
+                    专注力心法
+                </h2>
+                <p class="text-[#7A8289] max-w-2xl mx-auto">
+                    三个简单却强大的原则，帮助你重建专注。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="fade-in">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#E8E4DD] h-full">
+                        <div class="icon-container inline-flex items-center justify-center w-14 h-14 rounded-full mb-6">
+                            <i data-lucide="target" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold mb-4 text-[#3D4043]">一次只做一件事</h3>
+                        <p class="text-[#7A8289] leading-relaxed">
+                            多任务处理是个神话。专注于一件事，完成后再开始下一件。质量远比数量重要。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#E8E4DD] h-full">
+                        <div class="icon-container inline-flex items-center justify-center w-14 h-14 rounded-full mb-6">
+                            <i data-lucide="pause-circle" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold mb-4 text-[#3D4043]">学会说"不"</h3>
+                        <p class="text-[#7A8289] leading-relaxed">
+                            对无关的信息说"不"，对无效的社交说"不"。保护你的注意力，它是你最宝贵的资源。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#E8E4DD] h-full">
+                        <div class="icon-container inline-flex items-center justify-center w-14 h-14 rounded-full mb-6">
+                            <i data-lucide="heart" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold mb-4 text-[#3D4043]">接纳当下</h3>
+                        <p class="text-[#7A8289] leading-relaxed">
+                            不要总是担忧未来或回忆过去。专注当下的感受、当下的任务、当下身边的人。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section class="py-24 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="fade-in">
+                <div class="icon-container inline-flex items-center justify-center w-16 h-16 rounded-full mb-8">
+                    <i data-lucide="compass" class="w-8 h-8"></i>
+                </div>
+                <h2 class="font-serif text-3xl md:text-4xl font-semibold mb-6 text-[#3D4043]">
+                    准备好开始了吗？
+                </h2>
+                <p class="text-[#7A8289] max-w-2xl mx-auto mb-12 leading-relaxed">
+                    这不是一场对抗科技的战争，而是为了重新找回与科技的健康关系。用这7天，为自己创造一个更专注、更从容的生活。
+                </p>
+                <button class="btn-primary px-12 py-4 rounded-full font-medium text-lg tracking-wide">
+                    开启挑战
+                </button>
+                <p class="text-sm text-[#7A8289] mt-8">
+                    记住，改变从今天开始，而非明天。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer class="py-12 px-6 border-t border-[#E8E4DD]">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="text-[#7A8289] text-sm">
+                © 2024 数字断联实验 · 专注力回归之旅
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Intersection Observer for fade-in animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        const fadeElements = document.querySelectorAll('.fade-in');
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Checkbox interaction - save state to localStorage
+        const checkboxes = document.querySelectorAll('.checkbox-custom');
+        checkboxes.forEach((checkbox, index) => {
+            // Load saved state
+            const savedState = localStorage.getItem(`digital-detox-day-${index + 1}`);
+            if (savedState === 'true') {
+                checkbox.checked = true;
+            }
+
+            // Save state on change
+            checkbox.addEventListener('change', () => {
+                localStorage.setItem(`digital-detox-day-${index + 1}`, checkbox.checked);
+            });
+        });
+
+        // Button interaction
+        const startButton = document.querySelector('.btn-primary');
+        startButton.addEventListener('click', () => {
+            // Scroll to top of the 7-day journey
+            document.querySelector('section:nth-of-type(3)').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
